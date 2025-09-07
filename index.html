@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manthan Furade - Data Science Portfolio</title>
+    <!-- Bootstrap CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- Internal CSS -->
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #1a2a44, #2e4057); /* Deep navy to dark slate gradient */
+            color: #e0f7fa; /* White text */
+            overflow-x: hidden;
+            transition: all 0.3s ease;
+        }
+        header {
+            background: linear-gradient(135deg, rgba(26, 42, 68, 0.9), rgba(46, 64, 87, 0.9)); /* Dynamic header gradient */
+            color: #e0f7fa; /* Header text white */
+            padding: 60px 0;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            border-radius: 0 0 15px 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+        .profile-pic {
+            width: 300px; /* Increased size */
+            height: 300px; /* Increased size */
+            border-radius: 50%;
+            background-image: url('images/6.jpg'); /* Image from folder */
+            background-size: cover; /* Ensure image covers the area */
+            background-position: center; /* Center the image */
+            margin: 0 auto 20px;
+            border: 8px solid #e0f7fa; /* Thicker white border */
+            transition: transform 0.3s ease; /* Smooth 3D transition */
+        }
+        .profile-pic:hover {
+            transform: rotateY(10deg) translateZ(20px); /* 3D tilt on hover */
+        }
+        .social-links {
+            margin-bottom: 20px;
+        }
+        .social-links a {
+            font-size: 24px;
+            margin: 0 15px;
+            color: #e0f7fa; /* Social links white */
+            text-decoration: none;
+            transition: transform 0.3s ease; /* Micro-animation */
+        }
+        .social-links a:hover {
+            color: #00cec9; /* Bright cyan on hover */
+            transform: scale(1.2); /* Scale-up on hover */
+        }
+        .download-resume-btn {
+            display: inline-block;
+            background: rgba(26, 42, 68, 0.7);
+            color: #e0f7fa;
+            border: 2px solid #00cec9; /* Bright cyan border */
+            padding: 10px 20px;
+            border-radius: 10px;
+            text-decoration: none;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            margin: 20px 0;
+            backdrop-filter: blur(5px); /* Glassmorphism effect */
+        }
+        .download-resume-btn:hover {
+            background-color: #00cec9; /* Bright cyan on hover */
+            transform: scale(1.1); /* Scale-up on hover */
+            color: #e0f7fa;
+            text-decoration: none;
+        }
+        .nav-links {
+            margin-top: 20px;
+        }
+        .nav-links a {
+            color: #e0f7fa; /* White text */
+            margin: 0 15px;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-size: 20px; /* Increased font size */
+            font-weight: bold; /* Bold text */
+        }
+        .nav-links a:hover {
+            color: #00cec9; /* Bright cyan on hover */
+            text-decoration: underline;
+        }
+        .typing-container {
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .typing {
+            border-right: 2px solid #00cec9; /* Bright cyan */
+            white-space: nowrap;
+            overflow: hidden;
+            color: #e0f7fa; /* Typing text white */
+            animation: blinkCursor 0.7s infinite, typeAnimation 6s steps(40) infinite;
+        }
+        @keyframes blinkCursor {
+            50% { border-color: transparent; }
+        }
+        @keyframes typeAnimation {
+            0% { width: 0; }
+            50% { width: 100%; }
+            100% { width: 0; }
+        }
+        section {
+            padding: 40px 0;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            margin: 20px;
+            perspective: 1000px; /* Perspective for 3D effects */
+            backdrop-filter: blur(5px); /* Glassmorphism effect */
+            animation: fadeIn 1s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .section-container {
+            /* No perspective needed here */
+        }
+        .section-card {
+            background: rgba(26, 42, 68, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            color: #e0f7fa; /* Card text white */
+            transition: transform 0.3s ease; /* Smooth 3D transition */
+            transform-style: preserve-3d;
+            backdrop-filter: blur(5px); /* Glassmorphism effect */
+        }
+        .section-card:hover {
+            transform: rotateY(5deg) translateZ(10px); /* 3D tilt on hover */
+        }
+        .section-title {
+            border-bottom: 2px solid #00cec9; /* Bright cyan */
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+            color: #e0f7fa; /* Section title white */
+        }
+        .skills-card {
+            background: rgba(26, 42, 68, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            color: #e0f7fa; /* Skills card text white */
+            margin-bottom: 20px; /* Match project spacing */
+            transition: transform 0.3s ease; /* Micro-animation */
+            transform-style: preserve-3d;
+            backdrop-filter: blur(5px); /* Glassmorphism effect */
+        }
+        .skills-card:hover {
+            transform: translateZ(15px); /* Depth effect on hover */
+        }
+        .live-demo-btn {
+            display: inline-block;
+            background: rgba(26, 42, 68, 0.7);
+            color: #e0f7fa;
+            border: 2px solid #00cec9; /* Bright cyan border */
+            padding: 10px 20px;
+            border-radius: 10px;
+            text-decoration: none;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            margin-top: 10px;
+            backdrop-filter: blur(5px); /* Glassmorphism effect */
+        }
+        .live-demo-btn:hover {
+            background-color: #00cec9; /* Bright cyan on hover */
+            transform: scale(1.1); /* Scale-up on hover */
+            color: #e0f7fa;
+            text-decoration: none;
+        }
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 2px solid #00cec9; /* Bright cyan border */
+            border-radius: 5px;
+            background: rgba(26, 42, 68, 0.7);
+            color: #e0f7fa;
+            font-family: 'Arial', sans-serif;
+            transition: border-color 0.3s ease;
+            backdrop-filter: blur(5px); /* Glassmorphism effect */
+        }
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: #e0f7fa; /* White border on focus */
+        }
+        .contact-form button {
+            background: rgba(26, 42, 68, 0.7);
+            color: #e0f7fa;
+            border: 2px solid #00cec9; /* Bright cyan border */
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            backdrop-filter: blur(5px); /* Glassmorphism effect */
+        }
+        .contact-form button:hover {
+            background-color: #00cec9; /* Bright cyan on hover */
+            transform: scale(1.1); /* Scale-up on hover */
+        }
+        footer {
+            background: rgba(26, 42, 68, 0.9);
+            color: #e0f7fa; /* Footer text white */
+            padding: 20px 0;
+            text-align: center;
+            border-radius: 15px 15px 0 0;
+            box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.3);
+        }
+        a {
+            color: #e0f7fa; /* Links white */
+            text-decoration: none;
+        }
+        a:hover {
+            color: #00cec9; /* Bright cyan on hover */
+        }
+        /* Accessibility: Reduce motion */
+        @media (prefers-reduced-motion: reduce) {
+            .profile-pic, .social-links a, .section-card, .skills-card, .live-demo-btn, .download-resume-btn, .contact-form button {
+                transition: none;
+                transform: none;
+                animation: none;
+            }
+        }
+        /* Responsiveness: Adjust for smaller screens */
+        @media (max-width: 768px) {
+            .profile-pic {
+                width: 220px; /* Adjusted for smaller screens */
+                height: 220px;
+                border: 5px solid #e0f7fa;
+            }
+            section {
+                padding: 20px 0;
+                margin: 10px;
+            }
+            .live-demo-btn, .download-resume-btn, .contact-form button {
+                padding: 8px 16px;
+                font-size: 14px;
+            }
+            .nav-links a {
+                margin: 0 10px;
+                font-size: 18px; /* Adjusted for smaller screens */
+                font-weight: bold;
+            }
+        }
+        @media (max-width: 576px) {
+            .nav-links {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .nav-links a {
+                margin: 5px 8px;
+                font-size: 16px; /* Adjusted for smaller screens */
+                font-weight: bold;
+            }
+            .contact-form input,
+            .contact-form textarea {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <div class="profile-pic"></div>
+            <h1>Manthan Furade</h1>
+            <div class="typing-container">
+                <p>I'm a <span class="typing"></span></p>
+            </div>
+            <p class="social-links">
+                <a href="mailto:manthanfurade01@gmail.com" title="Email"><i class="bi bi-envelope-fill"></i></a>
+                <a href="https://github.com/manthanfurade" target="_blank" title="GitHub"><i class="bi bi-github"></i></a>
+                <a href="https://www.linkedin.com/in/manthan-furade-477a4525b" target="_blank" title="LinkedIn"><i class="bi bi-linkedin"></i></a>
+            </p>
+            <a href="resume.pdf" download class="download-resume-btn">Download Resume</a>
+            <div class="nav-links">
+                <a href="#about">About</a>
+                <a href="#education">Education</a>
+                <a href="#internship">Internship</a>
+                <a href="#projects">Projects</a>
+                <a href="#skills">Skills</a>
+                <a href="#certifications">Certifications</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <section id="about">
+        <div class="container section-container">
+            <div class="section-card">
+                <h2 class="section-title">About Me</h2>
+                <div class="skills-card">
+                    <p>I am Manthan Furade, an aspiring Data Scientist and Machine Learning Engineer. I recently completed my B.Tech in Computer Science and Engineering from MIT College of Railway Engineering and Research with a CGPA of 8.5. With a strong foundation in Python, SQL, Machine Learning, Artificial Intelligence, Deep Learning, Generative AI, and data analysis tools like Pandas and Matplotlib, I am passionate about leveraging data-driven solutions to solve real-world problems. My hands-on experience includes developing AI-powered applications, predictive models using Scikit-Learn and TensorFlow, and working with Large Language Models (LLM). I am eager to contribute to innovative projects in the data science domain and advance my career in AI and ML.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="education">
+        <div class="container section-container">
+            <div class="section-card">
+                <h2 class="section-title">Education</h2>
+                <div class="skills-card">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h4>MIT College of Railway Engineering and Research</h4>
+                            <p>B.Tech, Computer Science and Engineering</p>
+                            <p>Oct. 2022 – Jun. 2025 | Barshi, Maharashtra</p>
+                            <p>CGPA: 8.5</p>
+                        </div>
+                        <div class="col-md-6">
+                            <h4>Karmayogi Polytechnic College</h4>
+                            <p>Diploma, Computer Technology</p>
+                            <p>Aug. 2020 – Sep. 2022 | Pandharpur, Maharashtra</p>
+                            <p>Percentage: 77.60%</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="internship">
+        <div class="container section-container">
+            <div class="section-card">
+                <h2 class="section-title">Internship</h2>
+                <div class="skills-card">
+                    <h4>Data Science Intern – Anyatam-Adhyayan Education Services PVT.LTD</h4>
+                    <p>Jan. 2025 - July. 2025</p>
+                    <ul>
+                        <li>Completed a Data Science internship, gaining hands-on experience in Python, SQL, and key Python libraries (Pandas, NumPy, Matplotlib).</li>
+                        <li>Learned core concepts of Machine Learning, Data Analysis, and Statistical Modeling.</li>
+                        <li>Developed an ML-based Diabetes Prediction model using Linear Regression for health risk assessment.</li>
+                        <li>Worked on live projects and case studies, applying real-world datasets to solve business problems and optimize model performance.</li>
+                        <li>Skills: Python (Pandas, NumPy, Matplotlib), SQL, Machine Learning, Jupyter.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <div class="container section-container">
+            <div class="section-card">
+                <h2 class="section-title">Projects</h2>
+                <div class="skills-card">
+                    <div class="skills-card">
+                        <h4>DivineAsanas – GEN AI-Powered Yoga Companion</h4>
+                        <ul>
+                            <li>Developed an AI-driven yoga asana learning platform leveraging Google Gemini AI to generate detailed, structured information on 84+ yoga poses including steps, benefits, risks, and ideal practice guidelines.</li>
+                            <li>Built a full-stack web application using Python, Flask, and session management with a responsive front-end (HTML5, CSS3, JavaScript) for seamless user interaction.</li>
+                            <li>Added dynamic gallery for asana images and instant AI-generated guidance for selected poses, enabling a personalized yoga learning experience.</li>
+                            <li>Tools used: Python, Flask, HTML5, CSS3, JavaScript, Google Gemini AI, Generative AI, Large Language Models (LLM).</li>
+                        </ul>
+                        <a href="https://yog-asana.onrender.com/" target="_blank" class="live-demo-btn">Live Demo</a>
+                    </div>
+                    <div class="skills-card">
+                        <h4>Automatic Colorization of Grayscale Images</h4>
+                        <ul>
+                            <li>Automatic Image Colorization Web App – Developed a Flask-based web application that uses OpenCV DNN and a Caffe pre-trained model to automatically colorize grayscale images.</li>
+                            <li>Built an image upload and processing pipeline that applies LAB color space transformation and generates multiple colorized variations for better visual results.</li>
+                            <li>Implemented secure user authentication with MongoDB for account management and history tracking.</li>
+                            <li>Tools used: Python, Flask, OpenCV, Caffe, MongoDB, HTML, CSS, JavaScript, Deep Learning.</li>
+                        </ul>
+                        <a href="https://finalproject-2-7rm6.onrender.com/" target="_blank" class="live-demo-btn">Live Demo</a>
+                    </div>
+                    <div class="skills-card">
+                        <h4>House Price Prediction</h4>
+                        <ul>
+                            <li>Developed a machine learning web application using Flask to predict house prices based on features such as property size, number of bedrooms, and age of the house.</li>
+                            <li>Implemented a regression model trained on a custom housing dataset, achieving accurate predictions for housing values.</li>
+                            <li>Integrated NumPy and Pandas for efficient data preprocessing, feature engineering, and model training to enhance prediction reliability.</li>
+                            <li>Designed a responsive and intuitive HTML/CSS interface for user inputs and real-time display of predicted house prices.</li>
+                            <li>Deployed the application locally with Flask backend and Scikit-learn model, enabling seamless user interaction and fast predictions.</li>
+                            <li>Tools used: Python, Flask, Scikit-learn, Pandas, NumPy, HTML, CSS, Machine Learning.</li>
+                        </ul>
+                        <a href="https://house-price-prediction-zh0a.onrender.com" target="_blank" class="live-demo-btn">Live Demo</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <div class="container section-container">
+            <div class="section-card">
+                <h2 class="section-title">Skills</h2>
+                <div class="skills-card">
+                    <ul>
+                        <li>Programming Languages: Python, SQL</li>
+                        <li>Data Analysis & Visualization: Pandas, Matplotlib</li>
+                        <li>Machine Learning: Scikit-Learn, Deep Learning (PyTorch), TensorFlow</li>
+                        <li>Frameworks & Tools: Flask, OpenCV</li>
+                        <li>LLM & Generative AI: Large Language Models (LLM), Gen AI Applications</li>
+                        <li>Databases: MySQL</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="certifications">
+        <div class="container section-container">
+            <div class="section-card">
+                <h2 class="section-title">Certifications</h2>
+                <div class="skills-card">
+                    <ul>
+                        <li>Fundamentals of AI and ML, AWS Training and Certification.</li>
+                        <li>Data Science and Machine Learning Training, LinkedIn.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container section-container">
+            <div class="section-card">
+                <h2 class="section-title">Contact Me</h2>
+                <div class="skills-card">
+                    <p>Email: <a href="mailto:manthanfurade01@gmail.com">manthanfurade01@gmail.com</a></p>
+                    <p>Feel free to reach out for collaboration or inquiries!</p>
+                    <form class="contact-form" action="mailto:manthanfurade01@gmail.com" method="post" enctype="text/plain">
+                        <input type="text" name="name" placeholder="Your Name" required aria-label="Your Name">
+                        <input type="email" name="email" placeholder="Your Email" required aria-label="Your Email">
+                        <textarea name="message" placeholder="Your Message" rows="5" required aria-label="Your Message"></textarea>
+                        <button type="submit">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+    </footer>
+
+    <!-- Internal JavaScript for Typing Animation -->
+    <script>
+        const typingElement = document.querySelector('.typing');
+        const words = ['Data Science Enthusiast', 'Machine Learning Engineer', 'AI Developer'];
+        let wordIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+
+        function type() {
+            const currentWord = words[wordIndex];
+            if (isDeleting) {
+                typingElement.textContent = currentWord.substring(0, charIndex--);
+            } else {
+                typingElement.textContent = currentWord.substring(0, charIndex++);
+            }
+
+            if (!isDeleting && charIndex === currentWord.length + 1) {
+                setTimeout(() => { isDeleting = true; }, 2000);
+            } else if (isDeleting && charIndex === -1) {
+                isDeleting = false;
+                wordIndex = (wordIndex + 1) % words.length;
+            }
+
+            const speed = isDeleting ? 50 : 150;
+            setTimeout(type, speed);
+        }
+
+        document.addEventListener('DOMContentLoaded', type);
+    </script>
+
+    <!-- Bootstrap JS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
